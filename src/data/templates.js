@@ -3,6 +3,16 @@
 
 export const PROMPT_TEMPLATES = [
   {
+    id: 'istriku-3-takdir',
+    name: 'Istriku 3 Takdirku Gila',
+    style: 'cinematic comic illustration, semi-realistic, dramatic lighting, ultra-detailed, expressive Indonesian characters, 8k',
+    panels: [
+      'Indonesian married couple late 20s on a wooden balcony over rice paddies at golden hour. Wife wears elegant lavender modern kebaya with floral embroidery, jasmine flower in low bun, gentle smile. Husband wears navy batik shirt, warm affectionate smile, holding her hand. Paper lanterns, fireflies, mountains in background. Warm golden volumetric light, soft pink and peach palette, romantic dreamy mood, painterly cinematic style.',
+      'Same Indonesian couple in chaotic kitchen disaster. Wife in oversized neon-pink hoodie with messy ponytail and flour on cheek, exaggerated wide-eye scream, holding smoking frying pan. Husband in oversized yellow rubber gloves and green polka-dot apron, hair sticking up wildly, eyes spiraling in shock, cat leaping across his shoulders. Kitchen fire in corner, flying eggs, comic action lines, halftone dots. Neon yellow pink cyan palette, dutch angle, absurd comedy comic style.',
+      'Same couple on rain-soaked Jakarta rooftop at midnight thunderstorm. Wife in long black trench coat over dark crimson dress, drenched hair, rain-streaked mascara, holding torn old photograph, intense conflicted eyes. Husband in soaked grey suit, loose tie, stubble, holding a wedding ring, hand reaching toward her hesitantly. Lightning splitting sky behind Jakarta skyline, single amber streetlight, heavy diagonal rain, deep shadows. Midnight blue, crimson, charcoal palette, cinematic noir chiaroscuro, dramatic climax.'
+    ]
+  },
+  {
     id: 'tiktok-twist',
     name: 'TikTok Twist (Plot Twist)',
     style: 'cinematic, vibrant, ultra-detailed',
