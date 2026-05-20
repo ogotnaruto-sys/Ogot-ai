@@ -7,8 +7,8 @@ import { ACTIVE_PROVIDER } from './lib/aiClient.js';
 
 const makeId = () => Math.random().toString(36).slice(2, 9);
 
-const initialPanels = () =>
-  [0, 1, 2].map((i) => ({
+const makePanels = (count = 3) =>
+  Array.from({ length: count }, (_, i) => ({
     id: makeId(),
     order: i,
     prompt: '',
@@ -18,17 +18,20 @@ const initialPanels = () =>
   }));
 
 export default function App() {
-  const [panels, setPanels] = useState(initialPanels);
+  const [panels, setPanels] = useState(() => makePanels(3));
   const [style, setStyle] = useState(DEFAULT_STYLE);
   const [resolution, setResolution] = useState(DEFAULT_RESOLUTION);
   const canvasRef = useRef(null);
 
   function applyTemplate(template) {
     setStyle(template.style);
-    setPanels(prev =>
-      prev.map((p, i) => ({
-        ...p,
-        prompt: template.panels[i] ?? p.prompt,
+    // Buat panel baru sesuai jumlah panel di template
+    const count = template.panels.length;
+    setPanels(
+      Array.from({ length: count }, (_, i) => ({
+        id: makeId(),
+        order: i,
+        prompt: template.panels[i] ?? '',
         versions: [],
         activeVersion: 0,
         caption: ''
@@ -37,7 +40,7 @@ export default function App() {
   }
 
   function resetAll() {
-    setPanels(initialPanels());
+    setPanels(makePanels(3));
     setStyle(DEFAULT_STYLE);
     setResolution(DEFAULT_RESOLUTION);
   }

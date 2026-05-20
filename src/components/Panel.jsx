@@ -9,8 +9,9 @@ import { generateImage, generateCaption } from '../lib/aiClient.js';
  *  - panel: { id, prompt, versions: [{imageUrl,seed}], activeVersion, caption }
  *  - onUpdate(panelId, partial)
  *  - style, resolution: global settings
+ *  - sceneNumber, totalScenes: optional scene info from template
  */
-export default function Panel({ panel, onUpdate, style, resolution }) {
+export default function Panel({ panel, onUpdate, style, resolution, sceneNumber, totalScenes }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
     useSortable({ id: panel.id });
 
@@ -69,11 +70,18 @@ export default function Panel({ panel, onUpdate, style, resolution }) {
           className="cursor-grab active:cursor-grabbing text-white/40 hover:text-white text-sm select-none"
           title="Drag untuk reorder"
         >
-          ⋮⋮ Panel #{panel.order + 1}
+          ⋮⋮ {sceneNumber ? `Scene ${sceneNumber}` : `Panel #${panel.order + 1}`}
         </button>
-        <span className="text-xs text-white/40">
-          {panel.versions.length > 0 ? `${panel.versions.length} versi` : 'belum dibuat'}
-        </span>
+        <div className="flex items-center gap-2">
+          {sceneNumber && totalScenes && (
+            <span className="text-xs bg-accent/20 text-accent px-2 py-0.5 rounded-full font-medium">
+              ⏱ 12s
+            </span>
+          )}
+          <span className="text-xs text-white/40">
+            {panel.versions.length > 0 ? `${panel.versions.length} versi` : 'belum dibuat'}
+          </span>
+        </div>
       </div>
 
       {/* Image preview */}

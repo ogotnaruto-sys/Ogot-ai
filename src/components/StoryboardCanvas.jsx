@@ -37,20 +37,30 @@ const StoryboardCanvas = forwardRef(function StoryboardCanvas(
     setPanels(panels.map(p => (p.id === id ? { ...p, ...partial } : p)));
   }
 
+  // Pilih kolom grid berdasarkan jumlah panel
+  const colClass =
+    panels.length <= 3
+      ? 'grid-cols-1 md:grid-cols-3'
+      : panels.length === 4
+      ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4'
+      : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5';
+
   return (
     <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
       <SortableContext items={panels.map(p => p.id)} strategy={horizontalListSortingStrategy}>
         <div
           ref={ref}
-          className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 bg-ink rounded-2xl"
+          className={`grid ${colClass} gap-4 p-4 bg-ink rounded-2xl`}
         >
-          {panels.map(panel => (
+          {panels.map((panel, idx) => (
             <Panel
               key={panel.id}
               panel={panel}
               onUpdate={updatePanel}
               style={style}
               resolution={resolution}
+              sceneNumber={idx + 1}
+              totalScenes={panels.length}
             />
           ))}
         </div>
